@@ -1,7 +1,6 @@
 package gui;
 
 import algorithms.SelectionSort;
-import gui.algorithmscenes.AlgorithmCharts;
 import gui.algorithmscenes.AlgorithmScene;
 import gui.algorithmscenes.BarChartScene;
 import javafx.application.Application;

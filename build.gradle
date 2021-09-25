@@ -10,6 +10,10 @@ targetCompatibility = '11'
 group 'org.chiknas'
 version '1.0-SNAPSHOT'
 
+application {
+    mainClass = 'gui.SortingSandbox'
+}
+
 repositories {
     mavenCentral()
 }
