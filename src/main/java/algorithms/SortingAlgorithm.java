@@ -21,6 +21,11 @@ public interface SortingAlgorithm<T extends Number> {
     boolean isDone();
 
     /**
+     * The items the algorithm is looking at/is interested in right now.
+     */
+    List<Integer> highlights();
+
+    /**
      * Runs the next loop of the algorithm and returns the new state.
      * If the algorithm is done sorting the final state is returned instead without running anything.
      */

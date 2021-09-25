@@ -14,15 +14,20 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class AlgorithmScene<T extends Number> extends Scene {
 
-    private final SortingAlgorithm<T> algorithm;
+    protected final SortingAlgorithm<T> algorithm;
     private final ObservableList<XYChart.Series<Object, T>> observableList = FXCollections.observableArrayList();
+
+    protected XYChart<Object, T> chart;
 
     public AlgorithmScene(XYChart<Object, T> chart, List<T> list, SortingAlgorithm<T> algorithm) {
         super(chart, 800, 600);
         this.algorithm = algorithm;
+        this.chart = chart;
         chart.getYAxis().setTickLabelsVisible(false);
         chart.getYAxis().setOpacity(0);
+        chart.getXAxis().setOpacity(0);
         chart.setAnimated(false);
+        chart.setLegendVisible(false);
 
         observableList.setAll(convertToSeries(list));
         chart.setData(observableList);
@@ -43,13 +48,13 @@ public abstract class AlgorithmScene<T extends Number> extends Scene {
     protected XYChart.Series<Object, T> convertToSeries(List<T> list) {
         XYChart.Series<Object, T> series = new XYChart.Series<>();
         for (int i = 0; i < list.size(); i++) {
-            series.getData().add(new XYChart.Data<>(xAxisConverter(i + 1), list.get(i)));
+            series.getData().add(new XYChart.Data<>(xAxisConverter(i), list.get(i)));
         }
         return series;
     }
 
     private void start() {
-        int sortingSpeed = 40;
+        int sortingSpeed = 50;
 
         Thread fxThread = Thread.currentThread();
 

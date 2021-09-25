@@ -47,6 +47,7 @@ public class BubbleSort<T extends Number> implements SortingAlgorithm<T> {
     @Override
     public void round() {
 
+        // check the pair of the current index and the next item (index + 1) and if they are not in order switch them.
         BigDecimal currentNumber = BigDecimal.valueOf(state.get(index).doubleValue());
         BigDecimal nextNumber = BigDecimal.valueOf(state.get(index + 1).doubleValue());
         if (currentNumber.compareTo(nextNumber) > 0) {
@@ -54,13 +55,19 @@ public class BubbleSort<T extends Number> implements SortingAlgorithm<T> {
             roundMaxSwapIndex = index;
         }
 
-        if(index == sortedIndex - 1){
+        // checking if we are at the end of the list to reset our indexes
+        if (index == sortedIndex - 1) {
             sortedIndex = roundMaxSwapIndex;
             index = 0;
             roundMaxSwapIndex = 0;
-        }else{
+        } else {
             index++;
         }
+    }
+
+    @Override
+    public List<Integer> highlights() {
+        return List.of(index + 1, index + 2);
     }
 
     @Override

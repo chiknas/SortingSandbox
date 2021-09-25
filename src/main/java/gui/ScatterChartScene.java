@@ -14,6 +14,6 @@ public class ScatterChartScene<T extends Number> extends AlgorithmScene {
 
     @Override
     Object xAxisConverter(Integer item) {
-        return item;
+        return item + 1;
     }
 }
