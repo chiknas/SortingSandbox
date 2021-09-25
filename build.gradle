@@ -1,12 +1,22 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
 }
+
+sourceCompatibility = '11'
+targetCompatibility = '11'
 
 group 'org.chiknas'
 version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+}
+
+javafx {
+    version = '11.0.2'
+    modules = ['javafx.controls', 'javafx.fxml']
 }
 
 dependencies {

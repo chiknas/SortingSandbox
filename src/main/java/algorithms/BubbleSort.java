@@ -4,23 +4,23 @@ import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
-public class BubbleSort implements SortingAlgorithm {
+public class BubbleSort<T extends Number> implements SortingAlgorithm<T> {
 
     // the state of the algorithm per round.
-    private final List<? extends Number> state;
+    private final List<T> state;
 
     // in Bubblesort every item after the last swap in each round is basically sorted and we dont need to check it
     // again.
     // we will update this index every round to help us do that.
     private int sortedIndex;
 
-    public BubbleSort(List<? extends Number> list) {
+    public BubbleSort(List<T> list) {
         this.state = list;
         this.sortedIndex = list.size() - 1;
     }
 
     @Override
-    public List<? extends Number> getCurrentState() {
+    public List<T> getCurrentState() {
         return state;
     }
 

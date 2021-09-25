@@ -2,13 +2,13 @@ package algorithms;
 
 import java.util.List;
 
-public interface SortingAlgorithm {
+public interface SortingAlgorithm<T extends Number> {
 
 
     /**
      * Returns the current state of the algorithm for the specified list.
      */
-    List<? extends Number> getCurrentState();
+    List<T> getCurrentState();
 
     /**
      * The steps that each round the algorithm goes through.
@@ -24,7 +24,7 @@ public interface SortingAlgorithm {
      * Runs the next loop of the algorithm and returns the new state.
      * If the algorithm is done sorting the final state is returned instead without running anything.
      */
-    default List<? extends Number> executeNextRound() {
+    default List<T> executeNextRound() {
         if (!isDone()) {
             round();
         }
