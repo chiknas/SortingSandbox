@@ -14,6 +14,13 @@ public class BubbleSort<T extends Number> implements SortingAlgorithm<T> {
     // we will update this index every round to help us do that.
     private int sortedIndex;
 
+    // the current index that the algorithm is looking at. it will reset when it reaches the sortedIndex.
+    private int index = 0;
+
+    // keeps track of the position where the last swap happened for each run through of the list.
+    // this will update the sortedIndex and reset for the next loop of the list.
+    private int roundMaxSwapIndex = 0;
+
     public BubbleSort(List<T> list) {
         this.state = list;
         this.sortedIndex = list.size() - 1;
@@ -40,18 +47,20 @@ public class BubbleSort<T extends Number> implements SortingAlgorithm<T> {
     @Override
     public void round() {
 
-        int currentIndex = sortedIndex;
-
-        for (int i = 0; i < sortedIndex; i++) {
-            BigDecimal currentNumber = BigDecimal.valueOf(state.get(i).doubleValue());
-            BigDecimal nextNumber = BigDecimal.valueOf(state.get(i + 1).doubleValue());
-            if (currentNumber.compareTo(nextNumber) > 0) {
-                Collections.swap(state, i, i + 1);
-                currentIndex = i;
-            }
+        BigDecimal currentNumber = BigDecimal.valueOf(state.get(index).doubleValue());
+        BigDecimal nextNumber = BigDecimal.valueOf(state.get(index + 1).doubleValue());
+        if (currentNumber.compareTo(nextNumber) > 0) {
+            Collections.swap(state, index, index + 1);
+            roundMaxSwapIndex = index;
         }
 
-        sortedIndex = currentIndex;
+        if(index == sortedIndex - 1){
+            sortedIndex = roundMaxSwapIndex;
+            index = 0;
+            roundMaxSwapIndex = 0;
+        }else{
+            index++;
+        }
     }
 
     @Override

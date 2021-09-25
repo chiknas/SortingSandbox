@@ -49,7 +49,7 @@ public abstract class AlgorithmScene<T extends Number> extends Scene {
     }
 
     private void start() {
-        int sortingSpeed = 5000;
+        int sortingSpeed = 40;
 
         Thread fxThread = Thread.currentThread();
 
