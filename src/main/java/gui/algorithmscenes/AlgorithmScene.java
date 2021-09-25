@@ -1,6 +1,7 @@
-package gui;
+package gui.algorithmscenes;
 
 import algorithms.SortingAlgorithm;
+import gui.mainpane.MainGridPane;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +21,7 @@ public abstract class AlgorithmScene<T extends Number> extends Scene {
     protected XYChart<Object, T> chart;
 
     public AlgorithmScene(XYChart<Object, T> chart, List<T> list, SortingAlgorithm<T> algorithm) {
-        super(chart, 800, 600);
+        super(new MainGridPane(chart), 800, 600);
         this.algorithm = algorithm;
         this.chart = chart;
         chart.getYAxis().setTickLabelsVisible(false);

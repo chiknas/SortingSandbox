@@ -1,4 +1,4 @@
-package gui;
+package gui.algorithmscenes;
 
 import algorithms.SortingAlgorithm;
 import javafx.scene.chart.LineChart;

@@ -1,4 +1,4 @@
-package gui;
+package gui.algorithmscenes;
 
 import algorithms.Highlight;
 import algorithms.SortingAlgorithm;
