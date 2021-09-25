@@ -1,5 +1,6 @@
 package gui;
 
+import algorithms.Highlight;
 import algorithms.SortingAlgorithm;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -12,7 +13,6 @@ import java.util.List;
 
 public class BarChartScene<T extends Number> extends AlgorithmScene<T> {
 
-    private static final String HIGHLIGHT_COLOR = "#CE8F9C";
     private static final String BAR_COLOR = "#FFB99C";
 
     public BarChartScene(List<T> list, SortingAlgorithm algorithm) {
@@ -30,14 +30,15 @@ public class BarChartScene<T extends Number> extends AlgorithmScene<T> {
     }
 
     private void onChanged(ObservableList<XYChart.Series<Object, T>> list) {
-        // the sorting scenes should always work with a single
+        // the sorting scenes should always work with a single series so use findFirst
         list.stream().findFirst().orElseThrow()
                 .getData().forEach(this::setBarColor);
     }
 
     private void setBarColor(XYChart.Data<Object, T> bar) {
-        String barColor = algorithm.highlights().contains(Integer.parseInt((String) bar.getXValue()) + 1) ?
-                BAR_COLOR : HIGHLIGHT_COLOR;
+        String barColor = algorithm.highlights().stream()
+                .filter(highlight -> highlight.index() == Integer.parseInt((String) bar.getXValue()) - 1)
+                .findFirst().map(Highlight::color).orElse(BAR_COLOR);
 
         bar.getNode().setStyle(String.format("-fx-bar-fill: %s;", barColor));
     }

@@ -23,7 +23,7 @@ public interface SortingAlgorithm<T extends Number> {
     /**
      * The items the algorithm is looking at/is interested in right now.
      */
-    List<Integer> highlights();
+    List<Highlight> highlights();
 
     /**
      * Runs the next loop of the algorithm and returns the new state.
